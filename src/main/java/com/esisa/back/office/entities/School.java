@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class School {
 	
 	@Id
-	private ObjectId _id;
+	private ObjectId id;
 	private String name;
 	private String address;
 	private String phone;
@@ -26,9 +26,9 @@ public class School {
 		this.webSite = webSite;
 	}
 
-	public School(ObjectId _id, String name, String address, String phone, String webSite) {
+	public School(ObjectId id, String name, String address, String phone, String webSite) {
 		super();
-		this._id = _id;
+		this.id = id;
 		this.name = name;
 		this.address = address;
 		this.phone = phone;
@@ -67,12 +67,12 @@ public class School {
 		this.webSite = webSite;
 	}
 
-	public ObjectId get_id() {
-		return _id;
+	public ObjectId getId() {
+		return id;
 	}
 
-	public void set_id(ObjectId _id) {
-		this._id = _id;
+	public void setId(ObjectId id) {
+		this.id = id;
 	}
-	
+
 }

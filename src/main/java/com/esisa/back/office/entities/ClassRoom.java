@@ -1,12 +1,14 @@
 package com.esisa.back.office.entities;
 
 import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 public class ClassRoom {
 	
-	private ObjectId _id;
+	@Id
+	private ObjectId id;
 	private String name;
 	private String level;
 	private School school;
@@ -22,12 +24,20 @@ public class ClassRoom {
 		this.school = school;
 	}
 
-	public ObjectId get_id() {
-		return _id;
+	public ClassRoom(ObjectId id, String name, String level, School school) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.level = level;
+		this.school = school;
 	}
 
-	public void set_id(ObjectId _id) {
-		this._id = _id;
+	public ObjectId getId() {
+		return id;
+	}
+
+	public void setId(ObjectId id) {
+		this.id = id;
 	}
 
 	public String getName() {

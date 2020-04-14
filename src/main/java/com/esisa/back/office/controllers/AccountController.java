@@ -14,38 +14,40 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.esisa.back.office.entities.ClassRoom;
-import com.esisa.back.office.repositories.ClassRoomRepository;
+import com.esisa.back.office.entities.Account;
+import com.esisa.back.office.repositories.AccountRepository;
 
 @RestController
-@RequestMapping("/classRoom")
-public class ClassRoomController {
-	
+@RequestMapping("/account")
+public class AccountController {
+
 	@Autowired
-	private ClassRoomRepository classRoomRepository;
+	private AccountRepository accountRepository;
 	
 	@PostMapping("/add")
-	public ClassRoom add(@RequestBody ClassRoom classRoom) {
-		return classRoomRepository.save(classRoom);
+	public Account add(@RequestBody Account account) {
+		return accountRepository.save(account);
 	}
 	
 	@PutMapping("/update")
-	public ClassRoom update(@RequestBody ClassRoom classRoom) {
-		return classRoomRepository.save(classRoom);
+	public Account update(@RequestBody Account account) {
+		return accountRepository.save(account);
 	}
 	
 	@DeleteMapping("/delete/{id}")
 	public void delete(@PathVariable("id") ObjectId id) {
-		classRoomRepository.deleteById(id);
+		accountRepository.deleteById(id);
 	}
 	
 	@GetMapping("/getAll")
-	public List<ClassRoom> getAll() {
-		return classRoomRepository.findAll();
+	public List<Account> getAll() {
+		return accountRepository.findAll();
 	}
 	
-	@GetMapping("/getByid/{id}")
-	public Optional<ClassRoom> getByid(@PathVariable("id") ObjectId id) {
-		return classRoomRepository.findById(id);
+	@GetMapping("/getById/{id}")
+	public Optional<Account> getById(@PathVariable("id") ObjectId id) {
+		return accountRepository.findById(id);
 	}
+	
+	
 }

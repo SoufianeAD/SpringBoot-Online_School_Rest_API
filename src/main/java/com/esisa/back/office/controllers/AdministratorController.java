@@ -14,38 +14,39 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.esisa.back.office.entities.ClassRoom;
-import com.esisa.back.office.repositories.ClassRoomRepository;
+import com.esisa.back.office.entities.Administrator;
+import com.esisa.back.office.repositories.AdministratorRepository;
 
 @RestController
-@RequestMapping("/classRoom")
-public class ClassRoomController {
-	
+@RequestMapping("/administrator")
+public class AdministratorController {
+
 	@Autowired
-	private ClassRoomRepository classRoomRepository;
+	private AdministratorRepository administratorRepository;
 	
 	@PostMapping("/add")
-	public ClassRoom add(@RequestBody ClassRoom classRoom) {
-		return classRoomRepository.save(classRoom);
+	public Administrator add(@RequestBody Administrator administrator) {
+		return administratorRepository.save(administrator);
 	}
 	
 	@PutMapping("/update")
-	public ClassRoom update(@RequestBody ClassRoom classRoom) {
-		return classRoomRepository.save(classRoom);
+	public Administrator update(@RequestBody Administrator administrator) {
+		return administratorRepository.save(administrator);
 	}
 	
 	@DeleteMapping("/delete/{id}")
 	public void delete(@PathVariable("id") ObjectId id) {
-		classRoomRepository.deleteById(id);
+		administratorRepository.deleteById(id);
 	}
 	
 	@GetMapping("/getAll")
-	public List<ClassRoom> getAll() {
-		return classRoomRepository.findAll();
+	public List<Administrator> getAll() {
+		return administratorRepository.findAll();
 	}
 	
-	@GetMapping("/getByid/{id}")
-	public Optional<ClassRoom> getByid(@PathVariable("id") ObjectId id) {
-		return classRoomRepository.findById(id);
+	@GetMapping("/getById/{id}")
+	public Optional<Administrator> getById(@PathVariable("id") ObjectId id) {
+		return administratorRepository.findById(id);
 	}
+	
 }

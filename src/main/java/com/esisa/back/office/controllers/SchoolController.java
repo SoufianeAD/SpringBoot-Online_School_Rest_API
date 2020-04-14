@@ -28,6 +28,16 @@ public class SchoolController {
 		return schoolRepository.save(school);
 	}
 	
+	@PutMapping("/update")
+	public School update(@RequestBody School school) {
+		return schoolRepository.save(school);
+	}
+	
+	@DeleteMapping("/delete/{id}")
+	public void delete(@PathVariable("id") ObjectId id) {
+		schoolRepository.deleteById(id);
+	}
+	
 	@GetMapping("/getAll")
 	public List<School> getAll() {
 		schoolRepository.save(new School("ESISA", "Ibn Khatib, Fes", "053698741", "www.esisa.ma"));
@@ -35,19 +45,9 @@ public class SchoolController {
 		return schoolRepository.findAll();
 	}
 	
-	@GetMapping("/getBy_id/{_id}")
-	public School getBy_id(@PathVariable("_id") ObjectId _id) {
-		return schoolRepository.findBy_id(_id);
-	}
-	
-	@DeleteMapping("/delete/{_id}")
-	public void delete(@PathVariable("_id") ObjectId _id) {
-		schoolRepository.deleteById(_id);
-	}
-	
-	@PutMapping("/update")
-	public School update(@RequestBody School school) {
-		return schoolRepository.save(school);
+	@GetMapping("/getByid/{id}")
+	public School getByid(@PathVariable("id") ObjectId id) {
+		return schoolRepository.findByid(id);
 	}
 	
 }
