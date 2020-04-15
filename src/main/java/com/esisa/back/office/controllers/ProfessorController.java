@@ -39,6 +39,11 @@ public class ProfessorController {
 		professorRepository.deleteById(id);
 	}
 	
+	@DeleteMapping("/deleteAll")
+	public void deleteAll() {
+		professorRepository.deleteAll();
+	}
+	
 	@GetMapping("/getAll")
 	public List<Professor> getAll() {
 		return professorRepository.findAll();

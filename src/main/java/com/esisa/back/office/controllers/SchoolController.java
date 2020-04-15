@@ -38,6 +38,11 @@ public class SchoolController {
 		schoolRepository.deleteById(id);
 	}
 	
+	@DeleteMapping("/deleteAll")
+	public void deleteAll() {
+		schoolRepository.deleteAll();
+	}
+	
 	@GetMapping("/getAll")
 	public List<School> getAll() {
 		schoolRepository.save(new School("ESISA", "Ibn Khatib, Fes", "053698741", "www.esisa.ma"));

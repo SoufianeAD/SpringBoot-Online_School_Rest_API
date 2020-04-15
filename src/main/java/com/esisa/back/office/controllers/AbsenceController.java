@@ -39,6 +39,11 @@ public class AbsenceController {
 		absenceRepository.deleteById(id);
 	}
 	
+	@DeleteMapping("/deleteAll")
+	public void deleteAll() {
+		absenceRepository.deleteAll();
+	}
+	
 	@GetMapping("/getAll")
 	public List<Absence> getAll() {
 		return absenceRepository.findAll();

@@ -39,6 +39,11 @@ public class ClassRoomController {
 		classRoomRepository.deleteById(id);
 	}
 	
+	@DeleteMapping("/deleteAll")
+	public void deleteAll() {
+		classRoomRepository.deleteAll();
+	}
+	
 	@GetMapping("/getAll")
 	public List<ClassRoom> getAll() {
 		return classRoomRepository.findAll();

@@ -39,6 +39,11 @@ public class SessionController {
 		sessionRepository.deleteById(id);
 	}
 	
+	@DeleteMapping("/deleteAll")
+	public void deleteAll() {
+		sessionRepository.deleteAll();
+	}
+	
 	@GetMapping("/getAll")
 	public List<Session> getAll() {
 		return sessionRepository.findAll();

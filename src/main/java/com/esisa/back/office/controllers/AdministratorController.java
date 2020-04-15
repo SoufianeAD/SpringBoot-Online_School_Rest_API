@@ -39,6 +39,11 @@ public class AdministratorController {
 		administratorRepository.deleteById(id);
 	}
 	
+	@DeleteMapping("/deleteAll")
+	public void deleteAll() {
+		administratorRepository.deleteAll();
+	}
+	
 	@GetMapping("/getAll")
 	public List<Administrator> getAll() {
 		return administratorRepository.findAll();

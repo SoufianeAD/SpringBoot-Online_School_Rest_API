@@ -39,6 +39,11 @@ public class AccountController {
 		accountRepository.deleteById(id);
 	}
 	
+	@DeleteMapping("/deleteAll")
+	public void deleteAll() {
+		accountRepository.deleteAll();
+	}
+	
 	@GetMapping("/getAll")
 	public List<Account> getAll() {
 
