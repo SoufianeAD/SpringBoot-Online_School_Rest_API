@@ -14,41 +14,38 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.esisa.back.office.entities.Account;
-import com.esisa.back.office.repositories.AccountRepository;
+import com.esisa.back.office.entities.Session;
+import com.esisa.back.office.repositories.SessionRepository;
 
 @RestController
-@RequestMapping("/account")
-public class AccountController {
-
+@RequestMapping("/session")
+public class SessionController {
+	
 	@Autowired
-	private AccountRepository accountRepository;
+	private SessionRepository sessionRepository;
 	
 	@PostMapping("/add")
-	public Account add(@RequestBody Account account) {
-		return accountRepository.save(account);
+	public Session add(@RequestBody Session session) {
+		return sessionRepository.save(session);
 	}
 	
 	@PutMapping("/update")
-	public Account update(@RequestBody Account account) {
-		return accountRepository.save(account);
+	public Session update(@RequestBody Session session) {
+		return sessionRepository.save(session);
 	}
 	
 	@DeleteMapping("/delete/{id}")
 	public void delete(@PathVariable("id") ObjectId id) {
-		accountRepository.deleteById(id);
+		sessionRepository.deleteById(id);
 	}
 	
 	@GetMapping("/getAll")
-	public List<Account> getAll() {
-
-		return accountRepository.findAll();
+	public List<Session> getAll() {
+		return sessionRepository.findAll();
 	}
 	
 	@GetMapping("/getById/{id}")
-	public Optional<Account> getById(@PathVariable("id") ObjectId id) {
-		return accountRepository.findById(id);
+	public Optional<Session> getById(@PathVariable("id") ObjectId id) {
+		return sessionRepository.findById(id);
 	}
-	
-	
 }
