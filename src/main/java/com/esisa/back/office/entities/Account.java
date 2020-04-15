@@ -11,22 +11,25 @@ public class Account {
 	private ObjectId id;
 	private String userName;
 	private String password;
+	private School school;
 	
 	public Account() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Account(String userName, String password) {
+	public Account(String userName, String password, School school) {
 		super();
 		this.userName = userName;
 		this.password = password;
+		this.school = school;
 	}
 
-	public Account(ObjectId id, String userName, String password) {
+	public Account(ObjectId id, String userName, String password, School school) {
 		super();
 		this.id = id;
 		this.userName = userName;
 		this.password = password;
+		this.school = school;
 	}
 
 	public ObjectId getId() {
@@ -52,5 +55,13 @@ public class Account {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
+	public School getSchool() {
+		return school;
+	}
+
+	public void setSchool(School school) {
+		this.school = school;
+	}
+
 }
