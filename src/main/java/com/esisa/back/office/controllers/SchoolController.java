@@ -47,8 +47,6 @@ public class SchoolController {
 	
 	@GetMapping("/getAll")
 	public List<School> getAll() {
-		schoolRepository.save(new School("ESISA", "Ibn Khatib, Fes", "053698741", "www.esisa.ma"));
-		schoolRepository.save(new School("ENCG", "Ibn Khatib, Fes", "053698741", "www.esisa.ma"));
 		return schoolRepository.findAll();
 	}
 	
