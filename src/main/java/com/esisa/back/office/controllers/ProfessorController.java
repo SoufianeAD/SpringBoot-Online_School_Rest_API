@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.esisa.back.office.entities.Professor;
+import com.esisa.back.office.entities.Student;
 import com.esisa.back.office.repositories.ProfessorRepository;
 
 @RestController
@@ -54,5 +55,12 @@ public class ProfessorController {
 	@GetMapping("/getById/{id}")
 	public Optional<Professor> getById(@PathVariable("id") ObjectId id) {
 		return professorRepository.findById(id);
+	}
+	
+	/* Oussama Controller */
+
+	@GetMapping("/getAllBySchoolId/{id}")
+	public List<Professor> getAllBySchoolId(@PathVariable("id") ObjectId id) {
+		return professorRepository.findByAccountSchoolId(id);
 	}
 }
