@@ -16,6 +16,7 @@ public class Session {
 	private LocalDate date;
 	private String idSession;
 	private String password;
+	private String url;
 	private ClassRoom classRoom;
 	private Professor professor;
 	
@@ -23,7 +24,7 @@ public class Session {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Session(LocalDate start, LocalDate end, LocalDate date, String idSession, String password,
+	public Session(LocalDate start, LocalDate end, LocalDate date, String idSession, String password, String url,
 			ClassRoom classRoom, Professor professor) {
 		super();
 		this.start = start;
@@ -31,12 +32,13 @@ public class Session {
 		this.date = date;
 		this.idSession = idSession;
 		this.password = password;
+		this.url = url;
 		this.classRoom = classRoom;
 		this.professor = professor;
 	}
 
 	public Session(ObjectId id, LocalDate start, LocalDate end, LocalDate date, String idSession, String password,
-			ClassRoom classRoom, Professor professor) {
+			String url, ClassRoom classRoom, Professor professor) {
 		super();
 		this.id = id;
 		this.start = start;
@@ -44,6 +46,7 @@ public class Session {
 		this.date = date;
 		this.idSession = idSession;
 		this.password = password;
+		this.url = url;
 		this.classRoom = classRoom;
 		this.professor = professor;
 	}
@@ -96,6 +99,14 @@ public class Session {
 		this.password = password;
 	}
 
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
 	public ClassRoom getClassRoom() {
 		return classRoom;
 	}
@@ -111,6 +122,5 @@ public class Session {
 	public void setProfessor(Professor professor) {
 		this.professor = professor;
 	}
-	
-	
+
 }

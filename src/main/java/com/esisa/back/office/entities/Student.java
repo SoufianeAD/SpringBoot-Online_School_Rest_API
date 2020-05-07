@@ -15,6 +15,7 @@ public class Student {
 	private String phone;
 	private String email;
 	private String address;
+	private String level;
 	private Account account;
 	
 	public Student() {
@@ -22,7 +23,7 @@ public class Student {
 	}
 
 	public Student(String cne, String firstName, String lastName, String phone, String email, String address,
-			Account account) {
+			String level, Account account) {
 		super();
 		this.cne = cne;
 		this.firstName = firstName;
@@ -30,11 +31,12 @@ public class Student {
 		this.phone = phone;
 		this.email = email;
 		this.address = address;
+		this.level = level;
 		this.account = account;
 	}
 
 	public Student(ObjectId id, String cne, String firstName, String lastName, String phone, String email,
-			String address, Account account) {
+			String address, String level, Account account) {
 		super();
 		this.id = id;
 		this.cne = cne;
@@ -43,6 +45,7 @@ public class Student {
 		this.phone = phone;
 		this.email = email;
 		this.address = address;
+		this.level = level;
 		this.account = account;
 	}
 
@@ -102,6 +105,14 @@ public class Student {
 		this.address = address;
 	}
 
+	public String getLevel() {
+		return level;
+	}
+
+	public void setLevel(String level) {
+		this.level = level;
+	}
+
 	public Account getAccount() {
 		return account;
 	}
@@ -109,6 +120,5 @@ public class Student {
 	public void setAccount(Account account) {
 		this.account = account;
 	}
-	
-	
+
 }

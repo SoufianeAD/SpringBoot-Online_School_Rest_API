@@ -1,10 +1,15 @@
 package com.esisa.back.office.controllers;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,10 +18,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
 import com.esisa.back.office.entities.Document;
 import com.esisa.back.office.repositories.DocumentRepository;
+import com.esisa.back.office.services.FilesService;
 
 @RestController
 @CrossOrigin("*")
@@ -26,9 +35,18 @@ public class DocumentController {
 	@Autowired
 	private DocumentRepository documentRepository;
 	
+	@Autowired
+	private FilesService filesService;
+	
 	@PostMapping("/add")
 	public Document add(@RequestBody Document document) {
 		return documentRepository.save(document);
+	}
+	
+	@PostMapping("/upload")
+	public ResponseEntity<String> upload(@RequestParam("file") MultipartFile file) throws IOException {
+		filesService.uploadFile(file, FilesService.DOCUMENT_DIRECTORY);
+		return new ResponseEntity<>("File has been uploaded && stored!", HttpStatus.OK);
 	}
 	
 	@PutMapping("/update")
@@ -55,4 +73,19 @@ public class DocumentController {
 	public Optional<Document> getById(@PathVariable("id") ObjectId id) {
 		return documentRepository.findById(id);
 	}
+	
+	@GetMapping("/download/{file}")
+	public StreamingResponseBody download(HttpServletResponse response, @PathVariable("file") String file)  {
+	        response.setContentType("text/html;charset=UTF-8");
+	        response.setHeader("Content-Disposition", "attachment; filename=\"" + file +"\"");
+	        try {
+	        	return filesService.downloadFile(FilesService.DOCUMENT_DIRECTORY + "/" + file);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}
+	       
+	}
+	
 }
