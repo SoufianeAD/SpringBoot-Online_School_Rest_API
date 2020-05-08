@@ -63,6 +63,7 @@ public class AdministratorController {
 	public List<Administrator> getAllBySchoolId(@PathVariable("id") ObjectId id) {
 		return administratorRepository.findByAccountSchoolId(id);
 	}
+	
 	@GetMapping(path="/geByUsernameAndPassword/{username}/{password}")
 	public Administrator geByUsernameAndPassword(@PathVariable("username") String username , @PathVariable("password") String password) {
 		return administratorRepository.findByAccountUserNameAndAccountPassword(username, password);
