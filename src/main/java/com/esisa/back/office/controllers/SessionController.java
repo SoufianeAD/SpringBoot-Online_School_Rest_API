@@ -55,4 +55,9 @@ public class SessionController {
 	public Optional<Session> getById(@PathVariable("id") ObjectId id) {
 		return sessionRepository.findById(id);
 	}
+	
+	@GetMapping("/getSessionsByClassRoomId/{id}")
+	public List<Session> getSessionsByClassRoomId(@PathVariable("id") ObjectId id) {
+		return sessionRepository.findByClassRoomId(id);
+	}
 }

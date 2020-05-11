@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.esisa.back.office.entities.School;
 import com.esisa.back.office.entities.Student;
 import com.esisa.back.office.repositories.StudentRepository;
 
@@ -59,8 +58,8 @@ public class StudentController {
 	
 	/* Oussama Controller */
 	
-	@GetMapping("/getAllBySchoolId/{id}")
-	public List<Student> getAllBySchoolId(@PathVariable("id") ObjectId id) {
+	@GetMapping("/getStudentsBySchoolId/{id}")
+	public List<Student> getStudentsBySchoolId(@PathVariable("id") ObjectId id) {
 		return studentRepository.findByAccountSchoolId(id);
 	}
 }

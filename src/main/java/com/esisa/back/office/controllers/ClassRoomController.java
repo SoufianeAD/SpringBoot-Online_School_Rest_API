@@ -55,4 +55,9 @@ public class ClassRoomController {
 	public Optional<ClassRoom> getByid(@PathVariable("id") ObjectId id) {
 		return classRoomRepository.findById(id);
 	}
+	
+	@GetMapping("/getClassRoomsBySchoolId/{id}")
+	public List<ClassRoom> getClassRoomsBySchoolId(@PathVariable("id") ObjectId id) {
+		return classRoomRepository.findBySchoolId(id);
+	}
 }

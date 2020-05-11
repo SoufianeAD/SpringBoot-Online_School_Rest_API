@@ -56,4 +56,9 @@ public class FeedBackController {
 		return feedBackRepository.findById(id);
 	}
 	
+	@GetMapping("/getFeedBackByHomeworkId/{id}")
+	public List<FeedBack> getFeedBackByHomeworkId(@PathVariable("id") ObjectId id) {
+		return feedBackRepository.findByHomeworkId(id);
+	}
+	
 }

@@ -56,4 +56,9 @@ public class HomeworkController {
 		return homeworkRepository.findById(id);
 	}
 	
+	@GetMapping("/getHomeworksByClassRoomId/{id}")
+	public List<Homework> getHomeworksByClassRoomId(@PathVariable("id") ObjectId id) {
+		return homeworkRepository.findByClassRoomId(id);
+	}
+	
 }

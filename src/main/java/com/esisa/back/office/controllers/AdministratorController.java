@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.esisa.back.office.entities.Administrator;
-import com.esisa.back.office.entities.Professor;
 import com.esisa.back.office.repositories.AdministratorRepository;
 
 @RestController
@@ -64,7 +63,7 @@ public class AdministratorController {
 		return administratorRepository.findByAccountSchoolId(id);
 	}
 	
-	@GetMapping(path="/geByUsernameAndPassword/{username}/{password}")
+	@GetMapping("/geByUsernameAndPassword/{username}/{password}")
 	public Administrator geByUsernameAndPassword(@PathVariable("username") String username , @PathVariable("password") String password) {
 		return administratorRepository.findByAccountUserNameAndAccountPassword(username, password);
 	}

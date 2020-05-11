@@ -74,6 +74,11 @@ public class DocumentController {
 		return documentRepository.findById(id);
 	}
 	
+	@GetMapping("/getDocumentsByClassRoomId/{id}")
+	public List<Document> getDocumentsByClassRoomId(@PathVariable("id") ObjectId id) {
+		return documentRepository.findByClassRoomId(id);
+	}
+	
 	@GetMapping("/download/{file}")
 	public StreamingResponseBody download(HttpServletResponse response, @PathVariable("file") String file)  {
 	        response.setContentType("text/html;charset=UTF-8");

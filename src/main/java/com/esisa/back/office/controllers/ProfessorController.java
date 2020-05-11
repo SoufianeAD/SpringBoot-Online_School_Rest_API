@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.esisa.back.office.entities.Professor;
-import com.esisa.back.office.entities.Student;
 import com.esisa.back.office.repositories.ProfessorRepository;
 
 @RestController
