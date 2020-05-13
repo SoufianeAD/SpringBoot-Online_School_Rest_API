@@ -1,7 +1,6 @@
 package com.esisa.back.office.entities;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
