@@ -10,26 +10,23 @@ public class ClassRoom {
 	@Id
 	private ObjectId id;
 	private String name;
-	private String level;
-	private School school;
+	private Level level;
 	
 	public ClassRoom() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ClassRoom(String name, String level, School school) {
+	public ClassRoom(String name, Level level) {
 		super();
 		this.name = name;
 		this.level = level;
-		this.school = school;
 	}
 
-	public ClassRoom(ObjectId id, String name, String level, School school) {
+	public ClassRoom(ObjectId id, String name, Level level) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.level = level;
-		this.school = school;
 	}
 
 	public ObjectId getId() {
@@ -48,21 +45,12 @@ public class ClassRoom {
 		this.name = name;
 	}
 
-	public String getLevel() {
+	public Level getLevel() {
 		return level;
 	}
 
-	public void setLevel(String level) {
+	public void setLevel(Level level) {
 		this.level = level;
 	}
 
-	public School getSchool() {
-		return school;
-	}
-
-	public void setSchool(School school) {
-		this.school = school;
-	}
-
-	
 }

@@ -1,7 +1,6 @@
 package com.esisa.back.office.entities;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
@@ -15,30 +14,26 @@ public class Document {
 	private LocalDateTime dateTime;
 	private ClassRoom classRoom;
 	private Professor professor;
-	private List<File> files;
 	
 	public Document() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Document(String title, LocalDateTime dateTime, ClassRoom classRoom, Professor professor, List<File> files) {
+	public Document(String title, LocalDateTime dateTime, ClassRoom classRoom, Professor professor) {
 		super();
 		this.title = title;
 		this.dateTime = dateTime;
 		this.classRoom = classRoom;
 		this.professor = professor;
-		this.files = files;
 	}
 
-	public Document(ObjectId id, String title, LocalDateTime dateTime, ClassRoom classRoom, Professor professor,
-			List<File> files) {
+	public Document(ObjectId id, String title, LocalDateTime dateTime, ClassRoom classRoom, Professor professor) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.dateTime = dateTime;
 		this.classRoom = classRoom;
 		this.professor = professor;
-		this.files = files;
 	}
 
 	public ObjectId getId() {
@@ -80,13 +75,5 @@ public class Document {
 	public void setProfessor(Professor professor) {
 		this.professor = professor;
 	}
-
-	public List<File> getFiles() {
-		return files;
-	}
-
-	public void setFiles(List<File> files) {
-		this.files = files;
-	}
-
+	
 }

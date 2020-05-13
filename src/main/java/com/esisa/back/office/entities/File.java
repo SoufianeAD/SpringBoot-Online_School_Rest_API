@@ -10,23 +10,30 @@ public class File {
 	@Id
 	private ObjectId id;
 	private String title;
-	private String file;//path and file name
+	private FileType type;
+	private com.esisa.back.office.entities.Document document;
+	private FeedBack feedBack;
 	
 	public File() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public File(String title, String file) {
+	public File(String title, FileType type, com.esisa.back.office.entities.Document document, FeedBack feedBack) {
 		super();
 		this.title = title;
-		this.file = file;
+		this.type = type;
+		this.document = document;
+		this.feedBack = feedBack;
 	}
 
-	public File(ObjectId id, String title, String file) {
+	public File(ObjectId id, String title, FileType type, com.esisa.back.office.entities.Document document,
+			FeedBack feedBack) {
 		super();
 		this.id = id;
 		this.title = title;
-		this.file = file;
+		this.type = type;
+		this.document = document;
+		this.feedBack = feedBack;
 	}
 
 	public ObjectId getId() {
@@ -45,12 +52,28 @@ public class File {
 		this.title = title;
 	}
 
-	public String getFile() {
-		return file;
+	public FileType getType() {
+		return type;
 	}
 
-	public void setFile(String file) {
-		this.file = file;
+	public void setType(FileType type) {
+		this.type = type;
 	}
-	
+
+	public com.esisa.back.office.entities.Document getDocument() {
+		return document;
+	}
+
+	public void setDocument(com.esisa.back.office.entities.Document document) {
+		this.document = document;
+	}
+
+	public FeedBack getFeedBack() {
+		return feedBack;
+	}
+
+	public void setFeedBack(FeedBack feedBack) {
+		this.feedBack = feedBack;
+	}
+
 }

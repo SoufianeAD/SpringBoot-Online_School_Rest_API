@@ -14,31 +14,30 @@ public class FeedBack {
 	private ObjectId id;
 	private LocalDateTime delivredDateTime;
 	private Homework homework;
-	private List<File> files;
-	private List<Student> students;
+	private Student student;
 	
 	
 	public FeedBack() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public FeedBack(LocalDateTime delivredDateTime, Homework homework, List<File> files, List<Student> students) {
+
+	public FeedBack(LocalDateTime delivredDateTime, Homework homework, Student student) {
 		super();
 		this.delivredDateTime = delivredDateTime;
 		this.homework = homework;
-		this.files = files;
-		this.students = students;
+		this.student = student;
 	}
 
-	public FeedBack(ObjectId id, LocalDateTime delivredDateTime, Homework homework, List<File> files,
-			List<Student> students) {
+
+	public FeedBack(ObjectId id, LocalDateTime delivredDateTime, Homework homework, Student student) {
 		super();
 		this.id = id;
 		this.delivredDateTime = delivredDateTime;
 		this.homework = homework;
-		this.files = files;
-		this.students = students;
+		this.student = student;
 	}
+
 
 	public ObjectId getId() {
 		return id;
@@ -49,36 +48,35 @@ public class FeedBack {
 		this.id = id;
 	}
 
+
 	public LocalDateTime getDelivredDateTime() {
 		return delivredDateTime;
 	}
+
 
 	public void setDelivredDateTime(LocalDateTime delivredDateTime) {
 		this.delivredDateTime = delivredDateTime;
 	}
 
+
 	public Homework getHomework() {
 		return homework;
 	}
+
 
 	public void setHomework(Homework homework) {
 		this.homework = homework;
 	}
 
-	public List<File> getFiles() {
-		return files;
+
+	public Student getStudent() {
+		return student;
 	}
 
-	public void setFiles(List<File> files) {
-		this.files = files;
+
+	public void setStudent(Student student) {
+		this.student = student;
 	}
 
-	public List<Student> getStudents() {
-		return students;
-	}
-
-	public void setStudents(List<Student> students) {
-		this.students = students;
-	}
 	
 }
