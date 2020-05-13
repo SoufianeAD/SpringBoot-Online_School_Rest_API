@@ -74,8 +74,8 @@ public class DocumentController {
 		return documentRepository.findById(id);
 	}
 	
-	@GetMapping("/getDocumentsByClassRoomId/{id}")
-	public List<Document> getDocumentsByClassRoomId(@PathVariable("id") ObjectId id) {
+	@GetMapping("/getByClassRoomId/{id}")
+	public List<Document> getByClassRoomId(@PathVariable("id") ObjectId id) {
 		return documentRepository.findByClassRoomId(id);
 	}
 	

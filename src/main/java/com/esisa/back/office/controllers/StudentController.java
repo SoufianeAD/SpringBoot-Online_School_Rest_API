@@ -56,10 +56,8 @@ public class StudentController {
 		return studentRepository.findById(id);
 	}
 	
-	/* Oussama Controller */
-	
-	@GetMapping("/getStudentsBySchoolId/{id}")
-	public List<Student> getStudentsBySchoolId(@PathVariable("id") ObjectId id) {
-		return studentRepository.findByAccountSchoolId(id);
+	@GetMapping("/getByLevelId/{id}")
+	public List<Student> getByLevelId(@PathVariable("id") ObjectId id) {
+		return studentRepository.findByLevelId(id);
 	}
 }

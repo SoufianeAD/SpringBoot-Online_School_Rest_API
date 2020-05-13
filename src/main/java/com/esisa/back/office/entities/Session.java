@@ -1,6 +1,6 @@
 package com.esisa.back.office.entities;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
@@ -11,9 +11,7 @@ public class Session {
 
 	@Id
 	private ObjectId id;
-	private LocalDate start;
-	private LocalDate end;
-	private LocalDate date;
+	private LocalDateTime dateTime;
 	private String idSession;
 	private String password;
 	private String url;
@@ -24,12 +22,10 @@ public class Session {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Session(LocalDate start, LocalDate end, LocalDate date, String idSession, String password, String url,
-			ClassRoom classRoom, Professor professor) {
+	public Session(LocalDateTime dateTime, String idSession, String password, String url, ClassRoom classRoom,
+			Professor professor) {
 		super();
-		this.start = start;
-		this.end = end;
-		this.date = date;
+		this.dateTime = dateTime;
 		this.idSession = idSession;
 		this.password = password;
 		this.url = url;
@@ -37,13 +33,11 @@ public class Session {
 		this.professor = professor;
 	}
 
-	public Session(ObjectId id, LocalDate start, LocalDate end, LocalDate date, String idSession, String password,
-			String url, ClassRoom classRoom, Professor professor) {
+	public Session(ObjectId id, LocalDateTime dateTime, String idSession, String password, String url,
+			ClassRoom classRoom, Professor professor) {
 		super();
 		this.id = id;
-		this.start = start;
-		this.end = end;
-		this.date = date;
+		this.dateTime = dateTime;
 		this.idSession = idSession;
 		this.password = password;
 		this.url = url;
@@ -59,28 +53,12 @@ public class Session {
 		this.id = id;
 	}
 
-	public LocalDate getStart() {
-		return start;
+	public LocalDateTime getDateTime() {
+		return dateTime;
 	}
 
-	public void setStart(LocalDate start) {
-		this.start = start;
-	}
-
-	public LocalDate getEnd() {
-		return end;
-	}
-
-	public void setEnd(LocalDate end) {
-		this.end = end;
-	}
-
-	public LocalDate getDate() {
-		return date;
-	}
-
-	public void setDate(LocalDate date) {
-		this.date = date;
+	public void setDateTime(LocalDateTime dateTime) {
+		this.dateTime = dateTime;
 	}
 
 	public String getIdSession() {

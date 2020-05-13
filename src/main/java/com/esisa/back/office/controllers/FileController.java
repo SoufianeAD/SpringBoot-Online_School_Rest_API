@@ -1,5 +1,6 @@
 package com.esisa.back.office.controllers;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.bson.types.ObjectId;
@@ -34,27 +35,29 @@ public class FileController {
 		return fileRepository.save(file);
 	}
 	
-	@PostMapping("/upload")
-	public ResponseEntity<String> upload(@RequestParam("file") MultipartFile file) {
-		//service upload
-		return new ResponseEntity<>("File upload ok!", HttpStatus.OK);
-	}
-	
 	@PutMapping("/update")
 	public File update(@RequestBody File file) {
-		//service update
 		return fileRepository.save(file);
 	}
 	
 	@DeleteMapping("/delete/{id}")
 	public void delete(@PathVariable("id") ObjectId id) {
-		//service delete
 		fileRepository.deleteById(id);
+	}
+	
+	@DeleteMapping("/deleteAll")
+	public void deleteAll() {
+		fileRepository.deleteAll();
 	}
 	
 	@GetMapping("/getById/{id}")
 	public Optional<File> getById(@PathVariable("id") ObjectId id) {
 		return fileRepository.findById(id);
+	}
+	
+	@GetMapping("/getByDocumentId/{id}")
+	public List<File> getByDocumentId(@PathVariable("id") ObjectId id) {
+		return fileRepository.findByDocumentId(id);
 	}
 
 }

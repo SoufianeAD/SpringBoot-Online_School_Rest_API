@@ -56,8 +56,8 @@ public class AbsenceController {
 		return absenceRepository.findById(id);
 	}
 	
-	@GetMapping("/getAbsenceByStudentId/{id}")
-	public List<Absence> getAbsenseByStudentId(@PathVariable("id") ObjectId id) {
+	@GetMapping("/getByStudentId/{id}")
+	public List<Absence> getByStudentId(@PathVariable("id") ObjectId id) {
 		return absenceRepository.findByStudentId(id);
 	}
 

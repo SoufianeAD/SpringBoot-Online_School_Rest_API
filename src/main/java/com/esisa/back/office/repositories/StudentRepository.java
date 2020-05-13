@@ -9,6 +9,5 @@ import com.esisa.back.office.entities.Student;
 
 public interface StudentRepository extends MongoRepository<Student, ObjectId> {
 
-	/* Oussama Repository */
-	public List<Student> findByAccountSchoolId(ObjectId objectId);
+	public List<Student> findByLevelId(ObjectId objectId);
 }

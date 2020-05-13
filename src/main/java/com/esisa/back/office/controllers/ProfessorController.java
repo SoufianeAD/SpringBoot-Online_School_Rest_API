@@ -56,10 +56,8 @@ public class ProfessorController {
 		return professorRepository.findById(id);
 	}
 	
-	/* Oussama Controller */
-
-	@GetMapping("/getAllBySchoolId/{id}")
-	public List<Professor> getAllBySchoolId(@PathVariable("id") ObjectId id) {
+	@GetMapping("/getBySchoolId/{id}")
+	public List<Professor> getBySchoolId(@PathVariable("id") ObjectId id) {
 		return professorRepository.findByAccountSchoolId(id);
 	}
 }

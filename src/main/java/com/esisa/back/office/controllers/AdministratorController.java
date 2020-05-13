@@ -56,15 +56,13 @@ public class AdministratorController {
 		return administratorRepository.findById(id);
 	}
 	
-	/* Oussama Controller */
-
-	@GetMapping("/getAllBySchoolId/{id}")
-	public List<Administrator> getAllBySchoolId(@PathVariable("id") ObjectId id) {
+	@GetMapping("/getAdministratorsBySchoolId/{id}")
+	public List<Administrator> getAdministratorsBySchoolId(@PathVariable("id") ObjectId id) {
 		return administratorRepository.findByAccountSchoolId(id);
 	}
 	
-	@GetMapping("/geByUsernameAndPassword/{username}/{password}")
-	public Administrator geByUsernameAndPassword(@PathVariable("username") String username , @PathVariable("password") String password) {
+	@GetMapping("/getByUsernameAndPassword/{username}/{password}")
+	public Administrator getByUsernameAndPassword(@PathVariable("username") String username , @PathVariable("password") String password) {
 		return administratorRepository.findByAccountUserNameAndAccountPassword(username, password);
 	}
 	

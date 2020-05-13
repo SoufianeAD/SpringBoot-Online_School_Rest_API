@@ -15,50 +15,49 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.esisa.back.office.entities.Homework;
-import com.esisa.back.office.repositories.HomeworkRepository;
+import com.esisa.back.office.entities.Level;
+import com.esisa.back.office.repositories.LevelRepository;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/homework")
-public class HomeworkController {
-
+@RequestMapping("/level")
+public class LevelController {
+	
 	@Autowired
-	private HomeworkRepository homeworkRepository;
+	private LevelRepository levelRepository;
 	
 	@PostMapping("/add")
-	public Homework add(@RequestBody Homework homework) {
-		return homeworkRepository.save(homework);
+	public Level add(@RequestBody Level level) {
+		return levelRepository.save(level);
 	}
 	
 	@PutMapping("/update")
-	public Homework update(@RequestBody Homework homework) {
-		return homeworkRepository.save(homework);
+	public Level update(@RequestBody Level level) {
+		return levelRepository.save(level);
 	}
 	
 	@DeleteMapping("/delete/{id}")
 	public void delete(@PathVariable("id") ObjectId id) {
-		homeworkRepository.deleteById(id);
+		levelRepository.deleteById(id);
 	}
 	
 	@DeleteMapping("/deleteAll")
 	public void deleteAll() {
-		homeworkRepository.deleteAll();
+		levelRepository.deleteAll();
 	}
 	
 	@GetMapping("/getAll")
-	public List<Homework> getAll() {
-		return homeworkRepository.findAll();
+	public List<Level> getAll() {
+		return levelRepository.findAll();
 	}
 	
 	@GetMapping("/getById/{id}")
-	public Optional<Homework> getById(@PathVariable("id") ObjectId id) {
-		return homeworkRepository.findById(id);
+	public Optional<Level> getById(@PathVariable("id") ObjectId id) {
+		return levelRepository.findById(id);
 	}
 	
-	@GetMapping("/getByClassRoomId/{id}")
-	public List<Homework> getByClassRoomId(@PathVariable("id") ObjectId id) {
-		return homeworkRepository.findByClassRoomId(id);
+	@GetMapping("/getBySchoolId/{id}")
+	public List<Level> getBySchoolId(@PathVariable("id") ObjectId id) {
+		return levelRepository.findBySchoolId(id);
 	}
-	
 }
