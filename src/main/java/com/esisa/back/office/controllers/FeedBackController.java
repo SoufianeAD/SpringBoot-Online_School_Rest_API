@@ -20,7 +20,7 @@ import com.esisa.back.office.repositories.FeedBackRepository;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping
+@RequestMapping("/feedBack")
 public class FeedBackController {
 	
 	@Autowired
