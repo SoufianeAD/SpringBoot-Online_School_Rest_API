@@ -1,14 +1,17 @@
 package com.esisa.back.office.entities;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 public class School {
 	
+	@Transient
+    public static final String SEQUENCE_NAME = "schools_sequence";
+	
 	@Id
-	private ObjectId id;
+	private long id;
 	private String name;
 	private String address;
 	private String phone;
@@ -26,13 +29,21 @@ public class School {
 		this.webSite = webSite;
 	}
 
-	public School(ObjectId id, String name, String address, String phone, String webSite) {
+	public School(long id, String name, String address, String phone, String webSite) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.address = address;
 		this.phone = phone;
 		this.webSite = webSite;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -67,12 +78,10 @@ public class School {
 		this.webSite = webSite;
 	}
 
-	public ObjectId getId() {
-		return id;
-	}
-
-	public void setId(ObjectId id) {
-		this.id = id;
+	@Override
+	public String toString() {
+		return "School [id=" + id + ", name=" + name + ", address=" + address + ", phone=" + phone + ", webSite="
+				+ webSite + "]";
 	}
 
 }

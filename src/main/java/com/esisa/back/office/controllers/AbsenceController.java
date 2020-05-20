@@ -3,7 +3,6 @@ package com.esisa.back.office.controllers;
 import java.util.List;
 import java.util.Optional;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.esisa.back.office.entities.Absence;
 import com.esisa.back.office.repositories.AbsenceRepository;
+import com.esisa.back.office.services.SequenceGeneratorService;
 
 @RestController
 @CrossOrigin("*")
@@ -26,8 +26,12 @@ public class AbsenceController {
 	@Autowired
 	private AbsenceRepository absenceRepository;
 	
+	@Autowired
+	private SequenceGeneratorService sequenceGeneratorService;
+	
 	@PostMapping("/add")
 	public Absence add(@RequestBody Absence absence) {
+		absence.setId(sequenceGeneratorService.generateSequence(Absence.SEQUENCE_NAME));
 		return absenceRepository.save(absence);
 	}
 	
@@ -37,7 +41,7 @@ public class AbsenceController {
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public void delete(@PathVariable("id") ObjectId id) {
+	public void delete(@PathVariable("id") long id) {
 		absenceRepository.deleteById(id);
 	}
 	
@@ -52,12 +56,12 @@ public class AbsenceController {
 	}
 	
 	@GetMapping("/getById/{id}")
-	public Optional<Absence> getById(@PathVariable("id") ObjectId id) {
+	public Optional<Absence> getById(@PathVariable("id") long id) {
 		return absenceRepository.findById(id);
 	}
 	
 	@GetMapping("/getByStudentId/{id}")
-	public List<Absence> getByStudentId(@PathVariable("id") ObjectId id) {
+	public List<Absence> getByStudentId(@PathVariable("id") long id) {
 		return absenceRepository.findByStudentId(id);
 	}
 

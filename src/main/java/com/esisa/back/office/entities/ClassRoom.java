@@ -1,14 +1,17 @@
 package com.esisa.back.office.entities;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 public class ClassRoom {
 	
+	@Transient
+    public static final String SEQUENCE_NAME = "classRooms_sequence";
+	
 	@Id
-	private ObjectId id;
+	private long id;
 	private String name;
 	private Level level;
 	
@@ -22,18 +25,18 @@ public class ClassRoom {
 		this.level = level;
 	}
 
-	public ClassRoom(ObjectId id, String name, Level level) {
+	public ClassRoom(long id, String name, Level level) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.level = level;
 	}
 
-	public ObjectId getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(ObjectId id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -51,6 +54,11 @@ public class ClassRoom {
 
 	public void setLevel(Level level) {
 		this.level = level;
+	}
+
+	@Override
+	public String toString() {
+		return "ClassRoom [id=" + id + ", name=" + name + ", level=" + level + "]";
 	}
 
 }

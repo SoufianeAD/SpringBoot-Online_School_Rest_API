@@ -3,7 +3,6 @@ package com.esisa.back.office.controllers;
 import java.util.List;
 import java.util.Optional;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -37,7 +36,7 @@ public class FileController {
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public void delete(@PathVariable("id") ObjectId id) {
+	public void delete(@PathVariable("id") long id) {
 		fileRepository.deleteById(id);
 	}
 	
@@ -46,14 +45,19 @@ public class FileController {
 		fileRepository.deleteAll();
 	}
 	
+	@GetMapping("/getAll")
+	public List<File> getAll() {
+		return fileRepository.findAll();
+	}
+	
 	@GetMapping("/getById/{id}")
-	public Optional<File> getById(@PathVariable("id") ObjectId id) {
+	public Optional<File> getById(@PathVariable("id") long id) {
 		return fileRepository.findById(id);
 	}
 	
 	@GetMapping("/getByDocumentId/{id}")
-	public List<File> getByDocumentId(@PathVariable("id") ObjectId id) {
+	public List<File> getByDocumentId(@PathVariable("id") long id) {
 		return fileRepository.findByDocumentId(id);
 	}
-
+	
 }

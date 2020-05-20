@@ -1,14 +1,17 @@
 package com.esisa.back.office.entities;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 public class Student {
-
+	
+	@Transient
+    public static final String SEQUENCE_NAME = "documents_sequence";
+	
 	@Id
-	private ObjectId id;
+	private long id;
 	private String cne;
 	private String firstName;
 	private String lastName;
@@ -35,8 +38,8 @@ public class Student {
 		this.account = account;
 	}
 
-	public Student(ObjectId id, String cne, String firstName, String lastName, String phone, String email,
-			String address, Level level, Account account) {
+	public Student(long id, String cne, String firstName, String lastName, String phone, String email, String address,
+			Level level, Account account) {
 		super();
 		this.id = id;
 		this.cne = cne;
@@ -49,11 +52,11 @@ public class Student {
 		this.account = account;
 	}
 
-	public ObjectId getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(ObjectId id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -120,5 +123,12 @@ public class Student {
 	public void setAccount(Account account) {
 		this.account = account;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Student [id=" + id + ", cne=" + cne + ", firstName=" + firstName + ", lastName=" + lastName + ", phone="
+				+ phone + ", email=" + email + ", address=" + address + ", level=" + level + ", account=" + account
+				+ "]";
+	}
+
 }

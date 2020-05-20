@@ -25,5 +25,10 @@ public class Homework extends com.esisa.back.office.entities.Document {
 	public void setDelivringDateTime(LocalDateTime delivringDateTime) {
 		this.delivringDateTime = delivringDateTime;
 	}
+
+	@Override
+	public String toString() {
+		return "Homework [delivringDateTime=" + delivringDateTime + "]";
+	}
 	
 }

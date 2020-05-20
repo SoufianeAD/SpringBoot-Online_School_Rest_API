@@ -2,15 +2,18 @@ package com.esisa.back.office.entities;
 
 import java.time.LocalDateTime;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 public class FeedBack {
 	
+	@Transient
+    public static final String SEQUENCE_NAME = "feedBacks_sequence";
+	
 	@Id
-	private ObjectId id;
+	private long id;
 	private LocalDateTime delivredDateTime;
 	private Homework homework;
 	private Student student;
@@ -29,7 +32,7 @@ public class FeedBack {
 	}
 
 
-	public FeedBack(ObjectId id, LocalDateTime delivredDateTime, Homework homework, Student student) {
+	public FeedBack(long id, LocalDateTime delivredDateTime, Homework homework, Student student) {
 		super();
 		this.id = id;
 		this.delivredDateTime = delivredDateTime;
@@ -38,12 +41,12 @@ public class FeedBack {
 	}
 
 
-	public ObjectId getId() {
+	public long getId() {
 		return id;
 	}
 
 
-	public void setId(ObjectId id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -77,5 +80,11 @@ public class FeedBack {
 		this.student = student;
 	}
 
-	
+
+	@Override
+	public String toString() {
+		return "FeedBack [id=" + id + ", delivredDateTime=" + delivredDateTime + ", homework=" + homework + ", student="
+				+ student + "]";
+	}
+
 }

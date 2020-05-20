@@ -3,7 +3,6 @@ package com.esisa.back.office.controllers;
 import java.util.List;
 import java.util.Optional;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.esisa.back.office.entities.FeedBack;
 import com.esisa.back.office.repositories.FeedBackRepository;
+import com.esisa.back.office.services.SequenceGeneratorService;
 
 @RestController
 @CrossOrigin("*")
@@ -26,8 +26,12 @@ public class FeedBackController {
 	@Autowired
 	private FeedBackRepository feedBackRepository;
 	
+	@Autowired
+	private SequenceGeneratorService sequenceGeneratorService;
+	
 	@PostMapping("/add")
 	public FeedBack add(@RequestBody FeedBack feedBack) {
+		feedBack.setId(sequenceGeneratorService.generateSequence(FeedBack.SEQUENCE_NAME));
 		return feedBackRepository.save(feedBack);
 	}
 	
@@ -37,7 +41,7 @@ public class FeedBackController {
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public void delete(@PathVariable("id") ObjectId id) {
+	public void delete(@PathVariable("id") long id) {
 		feedBackRepository.deleteById(id);
 	}
 	
@@ -52,12 +56,12 @@ public class FeedBackController {
 	}
 	
 	@GetMapping("/getById/{id}")
-	public Optional<FeedBack> getById(@PathVariable("id") ObjectId id) {
+	public Optional<FeedBack> getById(@PathVariable("id") long id) {
 		return feedBackRepository.findById(id);
 	}
 	
 	@GetMapping("/getkByHomeworkId/{id}")
-	public List<FeedBack> getFeedBackByHomeworkId(@PathVariable("id") ObjectId id) {
+	public List<FeedBack> getFeedBackByHomeworkId(@PathVariable("id") long id) {
 		return feedBackRepository.findByHomeworkId(id);
 	}
 	

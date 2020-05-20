@@ -81,7 +81,7 @@ public class FilesService {
 				students.add(student);
 			}
 		}
-				
+		workbook.close();
 		return students;
 	}
 }

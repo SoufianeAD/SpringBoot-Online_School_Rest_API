@@ -1,14 +1,17 @@
 package com.esisa.back.office.entities;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 public class Administrator {
 	
+	@Transient
+    public static final String SEQUENCE_NAME = "administrators_sequence";
+	
 	@Id
-	private ObjectId id;
+	private long id;
 	private String firstName;
 	private String lastName;
 	private String email;
@@ -28,7 +31,7 @@ public class Administrator {
 		this.account = account;
 	}
 
-	public Administrator(ObjectId id, String firstName, String lastName, String email, String phone, Account account) {
+	public Administrator(long id, String firstName, String lastName, String email, String phone, Account account) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -38,11 +41,11 @@ public class Administrator {
 		this.account = account;
 	}
 
-	public ObjectId getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(ObjectId id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -85,5 +88,11 @@ public class Administrator {
 	public void setAccount(Account account) {
 		this.account = account;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Administrator [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+				+ ", phone=" + phone + ", account=" + account + "]";
+	}
+
 }

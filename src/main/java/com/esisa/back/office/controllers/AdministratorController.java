@@ -3,7 +3,6 @@ package com.esisa.back.office.controllers;
 import java.util.List;
 import java.util.Optional;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.esisa.back.office.entities.Administrator;
 import com.esisa.back.office.repositories.AdministratorRepository;
+import com.esisa.back.office.services.SequenceGeneratorService;
 
 @RestController
 @CrossOrigin("*")
@@ -26,8 +26,12 @@ public class AdministratorController {
 	@Autowired
 	private AdministratorRepository administratorRepository;
 	
+	@Autowired
+	private SequenceGeneratorService sequenceGeneratorService;
+	
 	@PostMapping("/add")
 	public Administrator add(@RequestBody Administrator administrator) {
+		administrator.setId(sequenceGeneratorService.generateSequence(Administrator.SEQUENCE_NAME));
 		return administratorRepository.save(administrator);
 	}
 	
@@ -37,7 +41,7 @@ public class AdministratorController {
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public void delete(@PathVariable("id") ObjectId id) {
+	public void delete(@PathVariable("id") long id) {
 		administratorRepository.deleteById(id);
 	}
 	
@@ -52,12 +56,12 @@ public class AdministratorController {
 	}
 	
 	@GetMapping("/getById/{id}")
-	public Optional<Administrator> getById(@PathVariable("id") ObjectId id) {
+	public Optional<Administrator> getById(@PathVariable("id") long id) {
 		return administratorRepository.findById(id);
 	}
 	
 	@GetMapping("/getAdministratorsBySchoolId/{id}")
-	public List<Administrator> getAdministratorsBySchoolId(@PathVariable("id") ObjectId id) {
+	public List<Administrator> getAdministratorsBySchoolId(@PathVariable("id") long id) {
 		return administratorRepository.findByAccountSchoolId(id);
 	}
 	

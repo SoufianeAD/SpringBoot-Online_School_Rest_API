@@ -3,7 +3,6 @@ package com.esisa.back.office.controllers;
 import java.util.List;
 import java.util.Optional;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.esisa.back.office.entities.Homework;
 import com.esisa.back.office.repositories.HomeworkRepository;
+import com.esisa.back.office.services.SequenceGeneratorService;
 
 @RestController
 @CrossOrigin("*")
@@ -26,8 +26,12 @@ public class HomeworkController {
 	@Autowired
 	private HomeworkRepository homeworkRepository;
 	
+	@Autowired
+	private SequenceGeneratorService sequenceGeneratorService;
+	
 	@PostMapping("/add")
 	public Homework add(@RequestBody Homework homework) {
+		homework.setId(sequenceGeneratorService.generateSequence(Homework.SEQUENCE_NAME));
 		return homeworkRepository.save(homework);
 	}
 	
@@ -37,7 +41,7 @@ public class HomeworkController {
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public void delete(@PathVariable("id") ObjectId id) {
+	public void delete(@PathVariable("id") long id) {
 		homeworkRepository.deleteById(id);
 	}
 	
@@ -52,12 +56,12 @@ public class HomeworkController {
 	}
 	
 	@GetMapping("/getById/{id}")
-	public Optional<Homework> getById(@PathVariable("id") ObjectId id) {
+	public Optional<Homework> getById(@PathVariable("id") long id) {
 		return homeworkRepository.findById(id);
 	}
 	
 	@GetMapping("/getByClassRoomId/{id}")
-	public List<Homework> getByClassRoomId(@PathVariable("id") ObjectId id) {
+	public List<Homework> getByClassRoomId(@PathVariable("id") long id) {
 		return homeworkRepository.findByClassRoomId(id);
 	}
 	

@@ -2,14 +2,17 @@ package com.esisa.back.office.entities;
 
 import java.time.LocalDateTime;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 
 @org.springframework.data.mongodb.core.mapping.Document
 public class Document {
 	
+	@Transient
+    public static final String SEQUENCE_NAME = "documents_sequence";
+	
 	@Id
-	private ObjectId id;
+	private long id;
 	private String title;
 	private LocalDateTime dateTime;
 	private ClassRoom classRoom;
@@ -27,7 +30,7 @@ public class Document {
 		this.professor = professor;
 	}
 
-	public Document(ObjectId id, String title, LocalDateTime dateTime, ClassRoom classRoom, Professor professor) {
+	public Document(long id, String title, LocalDateTime dateTime, ClassRoom classRoom, Professor professor) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -36,11 +39,11 @@ public class Document {
 		this.professor = professor;
 	}
 
-	public ObjectId getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(ObjectId id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -75,5 +78,11 @@ public class Document {
 	public void setProfessor(Professor professor) {
 		this.professor = professor;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Document [id=" + id + ", title=" + title + ", dateTime=" + dateTime + ", classRoom=" + classRoom
+				+ ", professor=" + professor + "]";
+	}
+
 }

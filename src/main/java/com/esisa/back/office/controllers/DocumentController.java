@@ -1,12 +1,12 @@
 package com.esisa.back.office.controllers;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +26,7 @@ import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBo
 import com.esisa.back.office.entities.Document;
 import com.esisa.back.office.repositories.DocumentRepository;
 import com.esisa.back.office.services.FilesService;
+import com.esisa.back.office.services.SequenceGeneratorService;
 
 @RestController
 @CrossOrigin("*")
@@ -38,8 +39,13 @@ public class DocumentController {
 	@Autowired
 	private FilesService filesService;
 	
+	@Autowired
+	private SequenceGeneratorService sequenceGeneratorService;
+	
 	@PostMapping("/add")
 	public Document add(@RequestBody Document document) {
+		document.setId(sequenceGeneratorService.generateSequence(Document.SEQUENCE_NAME));
+		document.setDateTime(LocalDateTime.now());
 		return documentRepository.save(document);
 	}
 	
@@ -55,7 +61,7 @@ public class DocumentController {
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public void delete(@PathVariable("id") ObjectId id) {
+	public void delete(@PathVariable("id") long id) {
 		documentRepository.deleteById(id);
 	}
 	
@@ -70,12 +76,12 @@ public class DocumentController {
 	}
 	
 	@GetMapping("/getById/{id}")
-	public Optional<Document> getById(@PathVariable("id") ObjectId id) {
+	public Optional<Document> getById(@PathVariable("id") long id) {
 		return documentRepository.findById(id);
 	}
 	
 	@GetMapping("/getByClassRoomId/{id}")
-	public List<Document> getByClassRoomId(@PathVariable("id") ObjectId id) {
+	public List<Document> getByClassRoomId(@PathVariable("id") long id) {
 		return documentRepository.findByClassRoomId(id);
 	}
 	

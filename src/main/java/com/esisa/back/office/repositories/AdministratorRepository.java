@@ -2,15 +2,13 @@ package com.esisa.back.office.repositories;
 
 import java.util.List;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import com.esisa.back.office.entities.Administrator;
 
 
-public interface AdministratorRepository extends MongoRepository<Administrator, ObjectId> {
+public interface AdministratorRepository extends MongoRepository<Administrator, Long> {
 
-	/* Oussama Repository */
-	public List<Administrator> findByAccountSchoolId(ObjectId objectId);
+	public List<Administrator> findByAccountSchoolId(long id);
 	public Administrator findByAccountUserNameAndAccountPassword(String username,String password);
 }

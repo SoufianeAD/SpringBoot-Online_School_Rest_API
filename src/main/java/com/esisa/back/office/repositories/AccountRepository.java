@@ -1,10 +1,8 @@
 package com.esisa.back.office.repositories;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import com.esisa.back.office.entities.Account;
 
-public interface AccountRepository extends MongoRepository<Account, ObjectId> {
-
+public interface AccountRepository extends MongoRepository<Account, Long> {
 }

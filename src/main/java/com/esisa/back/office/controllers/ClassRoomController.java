@@ -3,7 +3,6 @@ package com.esisa.back.office.controllers;
 import java.util.List;
 import java.util.Optional;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.esisa.back.office.entities.ClassRoom;
 import com.esisa.back.office.repositories.ClassRoomRepository;
+import com.esisa.back.office.services.SequenceGeneratorService;
 
 @RestController
 @CrossOrigin("*")
@@ -26,8 +26,12 @@ public class ClassRoomController {
 	@Autowired
 	private ClassRoomRepository classRoomRepository;
 	
+	@Autowired
+	private SequenceGeneratorService sequenceGeneratorService;
+	
 	@PostMapping("/add")
 	public ClassRoom add(@RequestBody ClassRoom classRoom) {
+		classRoom.setId(sequenceGeneratorService.generateSequence(ClassRoom.SEQUENCE_NAME));
 		return classRoomRepository.save(classRoom);
 	}
 	
@@ -37,7 +41,7 @@ public class ClassRoomController {
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public void delete(@PathVariable("id") ObjectId id) {
+	public void delete(@PathVariable("id") long id) {
 		classRoomRepository.deleteById(id);
 	}
 	
@@ -52,12 +56,12 @@ public class ClassRoomController {
 	}
 	
 	@GetMapping("/getByid/{id}")
-	public Optional<ClassRoom> getByid(@PathVariable("id") ObjectId id) {
+	public Optional<ClassRoom> getByid(@PathVariable("id") long id) {
 		return classRoomRepository.findById(id);
 	}
 	
 	@GetMapping("/getByLevelId/{id}")
-	public List<ClassRoom> getByLevelId(@PathVariable("id") ObjectId id) {
+	public List<ClassRoom> getByLevelId(@PathVariable("id") long id) {
 		return classRoomRepository.findByLevelId(id);
 	}
 }

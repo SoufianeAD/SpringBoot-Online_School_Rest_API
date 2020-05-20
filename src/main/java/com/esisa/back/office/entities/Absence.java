@@ -1,14 +1,17 @@
 package com.esisa.back.office.entities;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 public class Absence {
 	
+	@Transient
+    public static final String SEQUENCE_NAME = "absences_sequence";
+	
 	@Id
-	private ObjectId id;
+	private long id;
 	private Student student;
 	private Session session;
 	
@@ -22,18 +25,18 @@ public class Absence {
 		this.session = session;
 	}
 
-	public Absence(ObjectId id, Student student, Session session) {
+	public Absence(long id, Student student, Session session) {
 		super();
 		this.id = id;
 		this.student = student;
 		this.session = session;
 	}
 
-	public ObjectId getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(ObjectId id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -52,5 +55,10 @@ public class Absence {
 	public void setSession(Session session) {
 		this.session = session;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Absence [id=" + id + ", student=" + student + ", session=" + session + "]";
+	}
+
 }

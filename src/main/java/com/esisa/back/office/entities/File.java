@@ -1,14 +1,17 @@
 package com.esisa.back.office.entities;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 public class File {
 	
+	@Transient
+    public static final String SEQUENCE_NAME = "files_sequence";
+	
 	@Id
-	private ObjectId id;
+	private long id;
 	private String title;
 	private FileType type;
 	private com.esisa.back.office.entities.Document document;
@@ -26,7 +29,7 @@ public class File {
 		this.feedBack = feedBack;
 	}
 
-	public File(ObjectId id, String title, FileType type, com.esisa.back.office.entities.Document document,
+	public File(long id, String title, FileType type, com.esisa.back.office.entities.Document document,
 			FeedBack feedBack) {
 		super();
 		this.id = id;
@@ -36,11 +39,11 @@ public class File {
 		this.feedBack = feedBack;
 	}
 
-	public ObjectId getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(ObjectId id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -75,5 +78,12 @@ public class File {
 	public void setFeedBack(FeedBack feedBack) {
 		this.feedBack = feedBack;
 	}
+
+	@Override
+	public String toString() {
+		return "File [id=" + id + ", title=" + title + ", type=" + type + ", document=" + document + ", feedBack="
+				+ feedBack + "]";
+	}
+
 
 }

@@ -1,8 +1,8 @@
 package com.esisa.back.office.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.esisa.back.office.entities.School;
 import com.esisa.back.office.repositories.SchoolRepository;
+import com.esisa.back.office.services.SequenceGeneratorService;
 
 @RestController
 @CrossOrigin("*")
@@ -25,8 +26,12 @@ public class SchoolController {
 	@Autowired
 	private SchoolRepository schoolRepository;
 	
+	@Autowired
+	private SequenceGeneratorService sequenceGeneratorService;
+	
 	@PostMapping("/add")
 	public School add(@RequestBody School school) {
+		school.setId(sequenceGeneratorService.generateSequence(School.SEQUENCE_NAME));
 		return schoolRepository.save(school);
 	}
 	
@@ -36,7 +41,7 @@ public class SchoolController {
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public void delete(@PathVariable("id") ObjectId id) {
+	public void delete(@PathVariable("id") long id) {
 		schoolRepository.deleteById(id);
 	}
 	
@@ -51,8 +56,8 @@ public class SchoolController {
 	}
 	
 	@GetMapping("/getByid/{id}")
-	public School getByid(@PathVariable("id") ObjectId id) {
-		return schoolRepository.findByid(id);
+	public Optional<School> getByid(@PathVariable("id") long id) {
+		return schoolRepository.findById(id);
 	}
 	
 }

@@ -1,14 +1,17 @@
 package com.esisa.back.office.entities;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
  @Document
 public class Account {
 
+	@Transient
+	public static final String SEQUENCE_NAME = "accounts_sequence";
+	 
 	@Id
-	private ObjectId id;
+	private long id;
 	private String userName;
 	private String password;
 	private School school;
@@ -24,7 +27,7 @@ public class Account {
 		this.school = school;
 	}
 
-	public Account(ObjectId id, String userName, String password, School school) {
+	public Account(long id, String userName, String password, School school) {
 		super();
 		this.id = id;
 		this.userName = userName;
@@ -32,11 +35,11 @@ public class Account {
 		this.school = school;
 	}
 
-	public ObjectId getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(ObjectId id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -62,6 +65,11 @@ public class Account {
 
 	public void setSchool(School school) {
 		this.school = school;
+	}
+
+	@Override
+	public String toString() {
+		return "Account [id=" + id + ", userName=" + userName + ", password=" + password + ", school=" + school + "]";
 	}
 
 }

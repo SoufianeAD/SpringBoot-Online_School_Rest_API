@@ -3,7 +3,6 @@ package com.esisa.back.office.controllers;
 import java.util.List;
 import java.util.Optional;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.esisa.back.office.entities.Session;
 import com.esisa.back.office.repositories.SessionRepository;
+import com.esisa.back.office.services.SequenceGeneratorService;
 
 @RestController
 @CrossOrigin("*")
@@ -26,8 +26,12 @@ public class SessionController {
 	@Autowired
 	private SessionRepository sessionRepository;
 	
+	@Autowired
+	private SequenceGeneratorService sequenceGeneratorService;
+	
 	@PostMapping("/add")
 	public Session add(@RequestBody Session session) {
+		session.setId(sequenceGeneratorService.generateSequence(Session.SEQUENCE_NAME));
 		return sessionRepository.save(session);
 	}
 	
@@ -37,7 +41,7 @@ public class SessionController {
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public void delete(@PathVariable("id") ObjectId id) {
+	public void delete(@PathVariable("id") long id) {
 		sessionRepository.deleteById(id);
 	}
 	
@@ -52,12 +56,12 @@ public class SessionController {
 	}
 	
 	@GetMapping("/getById/{id}")
-	public Optional<Session> getById(@PathVariable("id") ObjectId id) {
+	public Optional<Session> getById(@PathVariable("id") long id) {
 		return sessionRepository.findById(id);
 	}
 	
 	@GetMapping("/getByClassRoomId/{id}")
-	public List<Session> getByClassRoomId(@PathVariable("id") ObjectId id) {
+	public List<Session> getByClassRoomId(@PathVariable("id") long id) {
 		return sessionRepository.findByClassRoomId(id);
 	}
 }

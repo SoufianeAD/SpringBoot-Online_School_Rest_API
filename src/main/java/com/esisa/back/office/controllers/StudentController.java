@@ -4,10 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +21,7 @@ import com.esisa.back.office.entities.Student;
 import com.esisa.back.office.repositories.LevelRepository;
 import com.esisa.back.office.repositories.StudentRepository;
 import com.esisa.back.office.services.FilesService;
+import com.esisa.back.office.services.SequenceGeneratorService;
 
 @RestController
 @CrossOrigin("*")
@@ -39,13 +37,17 @@ public class StudentController {
 	@Autowired
 	private FilesService filesService;
 	
+	@Autowired
+	private SequenceGeneratorService sequenceGeneratorService;
+	
 	@PostMapping("/add")
 	public Student add(@RequestBody Student student) {
+		student.setId(sequenceGeneratorService.generateSequence(Student.SEQUENCE_NAME));
 		return studentRepository.save(student);
 	}
 	
 	@PostMapping("/importByLevel/{id}")
-	public List<Student> upload(@PathVariable("id") ObjectId id, @RequestParam("file") MultipartFile file) throws IOException {
+	public List<Student> upload(@PathVariable("id") long id, @RequestParam("file") MultipartFile file) throws IOException {
 		List<Student> students = filesService.importSudents(file, FilesService.IMPORT_STUDENTS_DIRECTORY, levelRepository.findById(id).orElse(null));
 		for (Student student : students) {
 			studentRepository.save(student);
@@ -59,7 +61,7 @@ public class StudentController {
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public void delete(@PathVariable("id") ObjectId id) {
+	public void delete(@PathVariable("id") long id) {
 		studentRepository.deleteById(id);
 	}
 	
@@ -74,12 +76,12 @@ public class StudentController {
 	}
 	
 	@GetMapping("/getById/{id}")
-	public Optional<Student> getById(@PathVariable("id") ObjectId id) {
+	public Optional<Student> getById(@PathVariable("id") long id) {
 		return studentRepository.findById(id);
 	}
 	
 	@GetMapping("/getByLevelId/{id}")
-	public List<Student> getByLevelId(@PathVariable("id") ObjectId id) {
+	public List<Student> getByLevelId(@PathVariable("id") long id) {
 		return studentRepository.findByLevelId(id);
 	}
 }

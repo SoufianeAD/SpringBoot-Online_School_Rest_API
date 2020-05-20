@@ -2,15 +2,18 @@ package com.esisa.back.office.entities;
 
 import java.time.LocalDateTime;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 public class Session {
 
+	@Transient
+    public static final String SEQUENCE_NAME = "sessions_sequence";
+	
 	@Id
-	private ObjectId id;
+	private long id;
 	private LocalDateTime dateTime;
 	private String idSession;
 	private String password;
@@ -33,8 +36,8 @@ public class Session {
 		this.professor = professor;
 	}
 
-	public Session(ObjectId id, LocalDateTime dateTime, String idSession, String password, String url,
-			ClassRoom classRoom, Professor professor) {
+	public Session(long id, LocalDateTime dateTime, String idSession, String password, String url, ClassRoom classRoom,
+			Professor professor) {
 		super();
 		this.id = id;
 		this.dateTime = dateTime;
@@ -45,11 +48,11 @@ public class Session {
 		this.professor = professor;
 	}
 
-	public ObjectId getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(ObjectId id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -99,6 +102,12 @@ public class Session {
 
 	public void setProfessor(Professor professor) {
 		this.professor = professor;
+	}
+
+	@Override
+	public String toString() {
+		return "Session [id=" + id + ", dateTime=" + dateTime + ", idSession=" + idSession + ", password=" + password
+				+ ", url=" + url + ", classRoom=" + classRoom + ", professor=" + professor + "]";
 	}
 
 }
