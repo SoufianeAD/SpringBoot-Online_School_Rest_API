@@ -9,4 +9,5 @@ import com.esisa.back.office.entities.File;
 public interface FileRepository extends MongoRepository<File, Long> {
 	
 	public List<File> findByDocumentId(long id);
+	public List<File> findByFeedBackId(long id);
 }

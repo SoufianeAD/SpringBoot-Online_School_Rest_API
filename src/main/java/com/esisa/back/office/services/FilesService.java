@@ -55,6 +55,11 @@ public class FilesService {
 	        };
 	}
 	
+	public void removeFile(String file) throws IOException {
+		Path filePath = Paths.get(file);
+		Files.delete(filePath);
+	}
+	
 	public List<Student> importSudents(MultipartFile file, String directory, Level level) throws IOException {
 		Path filePath = Paths.get(directory  + File.separator + StringUtils.cleanPath(file.getOriginalFilename()));
 		Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);

@@ -14,22 +14,25 @@ public class ClassRoom {
 	private long id;
 	private String name;
 	private Level level;
+	private Professor professor;
 	
 	public ClassRoom() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ClassRoom(String name, Level level) {
+	public ClassRoom(String name, Level level, Professor professor) {
 		super();
 		this.name = name;
 		this.level = level;
+		this.professor = professor;
 	}
 
-	public ClassRoom(long id, String name, Level level) {
+	public ClassRoom(long id, String name, Level level, Professor professor) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.level = level;
+		this.professor = professor;
 	}
 
 	public long getId() {
@@ -56,9 +59,19 @@ public class ClassRoom {
 		this.level = level;
 	}
 
+	public Professor getProfessor() {
+		return professor;
+	}
+
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
+	}
+
 	@Override
 	public String toString() {
-		return "ClassRoom [id=" + id + ", name=" + name + ", level=" + level + "]";
+		return "ClassRoom [id=" + id + ", name=" + name + ", level=" + level + ", professor=" + professor + "]";
 	}
+	
+	
 
 }

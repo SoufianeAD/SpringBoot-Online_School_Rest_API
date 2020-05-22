@@ -19,25 +19,22 @@ public class Session {
 	private String password;
 	private String url;
 	private ClassRoom classRoom;
-	private Professor professor;
 	
 	public Session() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Session(LocalDateTime dateTime, String idSession, String password, String url, ClassRoom classRoom,
-			Professor professor) {
+	public Session(LocalDateTime dateTime, String idSession, String password, String url, ClassRoom classRoom) {
 		super();
 		this.dateTime = dateTime;
 		this.idSession = idSession;
 		this.password = password;
 		this.url = url;
 		this.classRoom = classRoom;
-		this.professor = professor;
 	}
 
-	public Session(long id, LocalDateTime dateTime, String idSession, String password, String url, ClassRoom classRoom,
-			Professor professor) {
+	public Session(long id, LocalDateTime dateTime, String idSession, String password, String url,
+			ClassRoom classRoom) {
 		super();
 		this.id = id;
 		this.dateTime = dateTime;
@@ -45,7 +42,6 @@ public class Session {
 		this.password = password;
 		this.url = url;
 		this.classRoom = classRoom;
-		this.professor = professor;
 	}
 
 	public long getId() {
@@ -96,18 +92,10 @@ public class Session {
 		this.classRoom = classRoom;
 	}
 
-	public Professor getProfessor() {
-		return professor;
-	}
-
-	public void setProfessor(Professor professor) {
-		this.professor = professor;
-	}
-
 	@Override
 	public String toString() {
 		return "Session [id=" + id + ", dateTime=" + dateTime + ", idSession=" + idSession + ", password=" + password
-				+ ", url=" + url + ", classRoom=" + classRoom + ", professor=" + professor + "]";
+				+ ", url=" + url + ", classRoom=" + classRoom + "]";
 	}
 
 }

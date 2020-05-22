@@ -2,6 +2,7 @@ package com.esisa.back.office.controllers;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,7 +25,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
 import com.esisa.back.office.entities.Document;
+import com.esisa.back.office.entities.File;
 import com.esisa.back.office.repositories.DocumentRepository;
+import com.esisa.back.office.repositories.FileRepository;
 import com.esisa.back.office.services.FilesService;
 import com.esisa.back.office.services.SequenceGeneratorService;
 
@@ -35,6 +38,9 @@ public class DocumentController {
 
 	@Autowired
 	private DocumentRepository documentRepository;
+	
+	@Autowired
+	private FileRepository fileRepository;
 	
 	@Autowired
 	private FilesService filesService;
@@ -62,6 +68,16 @@ public class DocumentController {
 	
 	@DeleteMapping("/delete/{id}")
 	public void delete(@PathVariable("id") long id) {
+		List<File> files = fileRepository.findByDocumentId(id);
+		for (File file : files) {
+			try {
+				filesService.removeFile(FilesService.DOCUMENT_DIRECTORY + java.io.File.separator + file.getTitle());
+				fileRepository.deleteById(file.getId());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		documentRepository.deleteById(id);
 	}
 	
@@ -72,7 +88,9 @@ public class DocumentController {
 	
 	@GetMapping("/getAll")
 	public List<Document> getAll() {
-		return documentRepository.findAll();
+		List<Document> documents = documentRepository.findAll();
+		Collections.reverse(documents);
+		return documents;
 	}
 	
 	@GetMapping("/getById/{id}")
