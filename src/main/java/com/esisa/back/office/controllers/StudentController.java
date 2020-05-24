@@ -84,4 +84,9 @@ public class StudentController {
 	public List<Student> getByLevelId(@PathVariable("id") long id) {
 		return studentRepository.findByLevelId(id);
 	}
+	
+	@GetMapping("/getBySchoolId/{id}")
+	public List<Student> getBySchoolId(@PathVariable("id") long id) {
+		return studentRepository.findByAccountSchoolId(id);
+	}
 }

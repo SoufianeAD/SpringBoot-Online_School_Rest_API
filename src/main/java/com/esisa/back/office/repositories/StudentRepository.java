@@ -9,4 +9,5 @@ import com.esisa.back.office.entities.Student;
 public interface StudentRepository extends MongoRepository<Student, Long> {
 
 	public List<Student> findByLevelId(long id);
+	public List<Student> findByAccountSchoolId(long id);
 }
