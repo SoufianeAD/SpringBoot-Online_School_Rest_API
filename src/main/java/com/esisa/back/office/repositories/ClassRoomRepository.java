@@ -9,4 +9,5 @@ import com.esisa.back.office.entities.ClassRoom;
 public interface ClassRoomRepository extends MongoRepository<ClassRoom, Long> {
 	public List<ClassRoom> findByLevelId(Long id);
 	public List<ClassRoom> findByLevelSchoolId(Long id);
+	public List<ClassRoom> findByProfessorId(Long id);
 }

@@ -64,4 +64,9 @@ public class ProfessorController {
 	public List<Professor> getBySchoolId(@PathVariable("id") long id) {
 		return professorRepository.findByAccountSchoolId(id);
 	}
+	
+	@GetMapping("/getByUsernameAndPassword/{username}/{password}")
+	public Professor getByUsernameAndPassword(@PathVariable("username") String username , @PathVariable("password") String password) {
+		return professorRepository.findByAccountUserNameAndAccountPassword(username, password);
+	}
 }

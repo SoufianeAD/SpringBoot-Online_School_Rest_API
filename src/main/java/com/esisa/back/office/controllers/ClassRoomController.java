@@ -69,4 +69,9 @@ public class ClassRoomController {
 	public List<ClassRoom> getBySchoolId(@PathVariable("id") long id) {
 		return classRoomRepository.findByLevelSchoolId(id);
 	}
+	
+	@GetMapping("/getByProfessorId/{id}")
+	public List<ClassRoom> getByProfessorId(@PathVariable("id") long id) {
+		return classRoomRepository.findByProfessorId(id);
+	}
 }

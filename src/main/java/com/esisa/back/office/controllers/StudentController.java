@@ -89,4 +89,9 @@ public class StudentController {
 	public List<Student> getBySchoolId(@PathVariable("id") long id) {
 		return studentRepository.findByAccountSchoolId(id);
 	}
+	
+	@GetMapping("/getByUsernameAndPassword/{username}/{password}")
+	public Student getByUsernameAndPassword(@PathVariable("username") String username , @PathVariable("password") String password) {
+		return studentRepository.findByAccountUserNameAndAccountPassword(username, password);
+	}
 }

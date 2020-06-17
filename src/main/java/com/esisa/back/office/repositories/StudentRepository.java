@@ -10,4 +10,5 @@ public interface StudentRepository extends MongoRepository<Student, Long> {
 
 	public List<Student> findByLevelId(long id);
 	public List<Student> findByAccountSchoolId(long id);
+	public Student findByAccountUserNameAndAccountPassword(String username,String password);
 }
